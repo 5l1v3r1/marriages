@@ -9,14 +9,14 @@ import (
 	"github.com/unixpickle/essentials"
 )
 
-const NumYears = 10
+const StartYear = 2008
 
 func main() {
 	writer := csv.NewWriter(os.Stdout)
 	writer.Write([]string{"app1", "app2", "date", "id"})
 	writer.Flush()
 	date := time.Now()
-	for i := 0; i < 365*NumYears; i++ {
+	for date.Year() >= StartYear {
 		dateStr := fmt.Sprintf("%02d/%02d/%04d", date.Month(), date.Day(), date.Year())
 		results, err := MarriagesAtDate(dateStr)
 		essentials.Must(err)
